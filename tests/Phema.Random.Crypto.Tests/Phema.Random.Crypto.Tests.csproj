@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\src\Phema.Random.Crypto\Phema.Random.Crypto.csproj" />
+	  <ProjectReference Include="..\..\src\Phema.Random.Crypto\Phema.Random.Crypto.csproj" />
 	</ItemGroup>
 
 </Project>

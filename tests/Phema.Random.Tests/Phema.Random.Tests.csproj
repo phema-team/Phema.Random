@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\src\Phema.Random\Phema.Random.csproj" />
+	  <ProjectReference Include="..\..\src\Phema.Random\Phema.Random.csproj" />
 	</ItemGroup>
 
 </Project>
