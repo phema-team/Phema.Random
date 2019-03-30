@@ -1,5 +1,7 @@
 # Phema.Random
 
+[![Nuget](https://img.shields.io/nuget/v/Phema.Random.svg)](https://www.nuget.org/packages/Phema.Random)
+
 C# Random wrapper for `Microsoft.Extensions.DependencyInjection`
 
 ## Usage
