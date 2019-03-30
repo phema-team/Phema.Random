@@ -1,14 +1,16 @@
 # Phema.Random
-C# Random wrapper for Microsoft DI
+
+C# Random wrapper for `Microsoft.Extensions.DependencyInjection`
 
 ## Usage
-```csharp
-// register
-services.AddPhemaRandom(); // .AddPhemaCryptoRandom()
 
-// resolve
+```csharp
+// Add
+services.AddRandom(); // .AddCryptoRandom()
+
+// Get
 var random = provider.GetRequiredService<IRandom>();
 
-// generate
+// Use
 var number = random.Next(); // .Next(10) .Next(10, 20) .NextBytes(100)
 ```

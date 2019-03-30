@@ -6,10 +6,10 @@ namespace Phema.Random
 {
 	public static class RandomExtensions
 	{
-		public static IServiceCollection AddPhemaRandom(this IServiceCollection services, Action<RandomOptions> options = null)
+		public static IServiceCollection AddRandom(this IServiceCollection services, Action<RandomOptions> options = null)
 		{
 			return services.Configure(options ?? (o => { }))
-				.AddPhemaRandom<Random>();
+				.AddRandom<Internal.Random>();
 		}
 	}
 }

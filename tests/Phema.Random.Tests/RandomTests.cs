@@ -12,7 +12,7 @@ namespace Phema.Random.Tests
 			var rng = new System.Random(1);
 			
 			var random = new ServiceCollection()
-				.AddPhemaRandom(options => options.Random = new System.Random(1))
+				.AddRandom(options => options.Random = new System.Random(1))
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
 			
@@ -25,7 +25,7 @@ namespace Phema.Random.Tests
 		public void RandomGeneratesNextInMaxRange()
 		{
 			var random = new ServiceCollection()
-				.AddPhemaRandom()
+				.AddRandom()
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
 			
@@ -36,7 +36,7 @@ namespace Phema.Random.Tests
 		public void RandomGeneratesNextInRange()
 		{
 			var random = new ServiceCollection()
-				.AddPhemaRandom()
+				.AddRandom()
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
 			

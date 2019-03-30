@@ -1,45 +1,34 @@
 using System;
 using System.Security.Cryptography;
 
-using Microsoft.Extensions.Options;
-
-namespace Phema.Random
+namespace Phema.Random.Internal
 {
 	internal sealed class CryptoRandom : IRandom
 	{
-		private readonly RandomNumberGenerator random;
-		
-		public CryptoRandom(IOptions<CryptoRandomOptions> options)
-		{
-			random = options.Value.Random ?? new RNGCryptoServiceProvider();
-		}
-		
 		public int Next()
 		{
 			Span<byte> span = stackalloc byte[4];
-			
-			random.GetBytes(span);
+
+			RandomNumberGenerator.Fill(span);
 
 			return BitConverter.ToInt32(span);
 		}
 
-		public int Next(int maxValue)
+		public int Next(int toExclusive)
 		{
-			return Next() % maxValue;
+			return RandomNumberGenerator.GetInt32(toExclusive);
 		}
 
-		public int Next(int minValue, int maxValue)
+		public int Next(int fromInclusive, int toExclusive)
 		{
-			var next = Next(maxValue - minValue);
-			
-			return next + minValue;
+			return RandomNumberGenerator.GetInt32(fromInclusive, toExclusive);
 		}
 
 		public Span<byte> NextBytes(int count)
 		{
 			Span<byte> span = new byte[count];
-			
-			random.GetBytes(span);
+
+			RandomNumberGenerator.Fill(span);
 
 			return span;
 		}
@@ -47,8 +36,8 @@ namespace Phema.Random
 		public double NextDouble()
 		{
 			Span<byte> span = stackalloc byte[8];
-			
-			random.GetBytes(span);
+
+			RandomNumberGenerator.Fill(span);
 
 			return BitConverter.ToDouble(span);
 		}

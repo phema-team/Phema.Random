@@ -1,15 +1,13 @@
-﻿using System;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Phema.Random.Internal;
 
 namespace Phema.Random
 {
 	public static class CryptoRandomExtensions
 	{
-		public static IServiceCollection AddPhemaCryptoRandom(this IServiceCollection services, Action<CryptoRandomOptions> options = null)
+		public static IServiceCollection AddCryptoRandom(this IServiceCollection services)
 		{
-			return services.Configure(options ?? (o => { }))
-				.AddPhemaRandom<CryptoRandom>();
+			return services.AddRandom<CryptoRandom>();
 		}
 	}
 }

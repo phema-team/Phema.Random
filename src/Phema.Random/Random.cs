@@ -2,7 +2,7 @@ using System;
 
 using Microsoft.Extensions.Options;
 
-namespace Phema.Random
+namespace Phema.Random.Internal
 {
 	internal sealed class Random : IRandom
 	{
@@ -18,14 +18,14 @@ namespace Phema.Random
 			return random.Next();
 		}
 
-		public int Next(int maxValue)
+		public int Next(int toExclusive)
 		{
-			return random.Next(maxValue);
+			return random.Next(toExclusive);
 		}
 
-		public int Next(int minValue, int maxValue)
+		public int Next(int fromInclusive, int toExclusive)
 		{
-			return random.Next(minValue, maxValue);
+			return random.Next(fromInclusive, toExclusive);
 		}
 
 		public Span<byte> NextBytes(int count)
