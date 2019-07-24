@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-
 using Xunit;
 
 namespace Phema.Random.Crypto.Tests
@@ -13,10 +12,10 @@ namespace Phema.Random.Crypto.Tests
 				.AddCryptoRandom()
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
-			
+
 			Assert.InRange(random.Next(1000), 0, 1000);
 		}
-		
+
 		[Fact]
 		public void RandomGeneratesNextInRange()
 		{
@@ -24,7 +23,7 @@ namespace Phema.Random.Crypto.Tests
 				.AddCryptoRandom()
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
-			
+
 			Assert.Equal(1000, random.Next(1000, 1001));
 		}
 	}

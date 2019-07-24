@@ -1,5 +1,4 @@
 using System;
-
 using Microsoft.Extensions.Options;
 
 namespace Phema.Random.Internal
@@ -7,12 +6,12 @@ namespace Phema.Random.Internal
 	internal sealed class Random : IRandom
 	{
 		private readonly System.Random random;
-		
+
 		public Random(IOptions<RandomOptions> options)
 		{
-			random = options.Value.Random ?? new System.Random();
+			random = options.Value.RandomProvider();
 		}
-		
+
 		public int Next()
 		{
 			return random.Next();
@@ -31,7 +30,7 @@ namespace Phema.Random.Internal
 		public Span<byte> NextBytes(int count)
 		{
 			Span<byte> span = new byte[count];
-			
+
 			random.NextBytes(span);
 
 			return span;

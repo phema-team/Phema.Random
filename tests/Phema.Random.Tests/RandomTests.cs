@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-
 using Xunit;
 
 namespace Phema.Random.Tests
@@ -10,17 +9,18 @@ namespace Phema.Random.Tests
 		public void RandomGeneratesSameNext()
 		{
 			var rng = new System.Random(1);
-			
+
 			var random = new ServiceCollection()
-				.AddRandom(options => options.Random = new System.Random(1))
+				.AddRandom(options => options.RandomProvider = () => new System.Random(1))
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
-			
+
 			Assert.Equal(rng.Next(), random.Next());
 			Assert.Equal(rng.Next(), random.Next());
 			Assert.Equal(rng.Next(), random.Next());
+			Assert.Equal(rng.Next(2) == 0, random.NextBool());
 		}
-		
+
 		[Fact]
 		public void RandomGeneratesNextInMaxRange()
 		{
@@ -28,10 +28,10 @@ namespace Phema.Random.Tests
 				.AddRandom()
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
-			
+
 			Assert.InRange(random.Next(1000), int.MinValue, 1000);
 		}
-		
+
 		[Fact]
 		public void RandomGeneratesNextInRange()
 		{
@@ -39,7 +39,7 @@ namespace Phema.Random.Tests
 				.AddRandom()
 				.BuildServiceProvider()
 				.GetRequiredService<IRandom>();
-			
+
 			Assert.Equal(1000, random.Next(1000, 1001));
 		}
 	}

@@ -9,5 +9,10 @@ namespace Phema.Random
 		{
 			return services.AddScoped<IRandom, TRandom>();
 		}
+
+		public static bool NextBool(this IRandom random)
+		{
+			return random.Next(2) == 0;
+		}
 	}
 }

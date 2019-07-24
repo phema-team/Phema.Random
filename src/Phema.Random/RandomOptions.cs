@@ -1,7 +1,14 @@
+using System;
+
 namespace Phema.Random
 {
 	public sealed class RandomOptions
 	{
-		public System.Random Random { get; set; }
+		public RandomOptions()
+		{
+			RandomProvider = () => new System.Random();
+		}
+
+		public Func<System.Random> RandomProvider { get; set; }
 	}
 }
